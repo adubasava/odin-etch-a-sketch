@@ -1,9 +1,12 @@
-﻿let number = 16*16;
+﻿let width = 960;
+let number = 64;
 let container = document.getElementById('container');
 
-for (i = 0; i < number; i++){
+for (i = 0; i < number*number; i++){
     let div = document.createElement('div');
     div.classList.add('item');
+    div.style.width = `${width / number}px`;
+    div.style.height = `${width / number}px`;
     container.appendChild(div);
 }
 
@@ -23,3 +26,11 @@ divs.forEach((item) => {
 //         item.style.backgroundColor = 'white';
 //     });
 // });
+
+clear = document.querySelector('#clear');
+
+clear.addEventListener('click', () => {
+    divs.forEach((item) => {
+        item.style.backgroundColor = 'white';        
+    });
+})

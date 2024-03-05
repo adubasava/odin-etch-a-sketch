@@ -1,20 +1,20 @@
 ﻿const WIDTH = 960;
-let number = 16;
+const DEFAULT_GRID_SIZE = 16;
 const container = document.querySelector('.container');
 
-createSketch(number);
+createSketch(DEFAULT_GRID_SIZE);
 
-function createSketch(number) {
+function createSketch(gridSize) {
     if (container.children.length > 0) {
         let divs = document.querySelectorAll('.item');
         removeDivs(divs);
     }
 
-    for (i = 0; i < number*number; i++) {
+    for (i = 0; i < gridSize*gridSize; i++) {
         let div = document.createElement('div');
         div.classList.add('item');
-        div.style.width = `${WIDTH / number}px`;
-        div.style.height = `${WIDTH / number}px`;
+        div.style.width = `${WIDTH / gridSize}px`;
+        div.style.height = `${WIDTH / gridSize}px`;
         container.appendChild(div);
     }
     
@@ -24,10 +24,12 @@ function createSketch(number) {
     let clear = document.querySelector('#clear');
     clearBackground(clear, divs);
 
-    let res = document.querySelector('input#res');
+    let res = document.querySelector('#res');
     let show = document.querySelector('#range');
-    res.addEventListener('input', () => {
-        show.textContent = `${res.value} x ${res.value}`;
+       
+    res.addEventListener('input', event => {
+        const value = event.target.value;
+        show.textContent = `${value} x ${value}`;
     })
 
     let grid = document.querySelector('#grid');
